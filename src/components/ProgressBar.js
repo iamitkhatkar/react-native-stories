@@ -3,40 +3,35 @@ import { View, StyleSheet, Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
 
 const ProgressBar = (props) => {
-  const { index, currentIndex, isSeen, idx } = props;
+  const { index, currentIndex, duration, length, active } = props;
   const scale = useRef(new Animated.Value(1)).current;
   const [width, setWidth] = useState(0);
-  useEffect(() => {
-    if (currentIndex === index && index > 0) {
-      scale.setValue(0);
-      Animated.timing(scale, {
-        toValue: width,
-        duration: 2000,
-        easing: Easing.linear,
-      }).start(() => idx === currentIndex && props.isEnded());
-    }
-
-    if (currentIndex === 0 && isSeen) {
-      scale.setValue(0);
-      Animated.timing(scale, {
-        toValue: width,
-        duration: 2000,
-        easing: Easing.linear,
-      }).start(() => idx === currentIndex && props.isEnded());
-    }
-  }, [currentIndex]);
 
   const onLayoutAdded = (evt) => {
     setWidth(evt.width);
-    if (idx === 0) {
-      scale.setValue(0);
-      Animated.timing(scale, {
-        toValue: evt.width,
-        duration: 2000,
-        easing: Easing.linear,
-      }).start(() => idx === currentIndex && props.isEnded());
-    }
   };
+
+  useEffect(() => {
+    if (index === currentIndex && length - 1 !== currentIndex) {
+      scale.setValue(0);
+    }
+    switch (active) {
+      case 2:
+        return scale.setValue(width);
+      case 1:
+        return Animated.timing(scale, {
+          toValue: width,
+          duration: duration * 1000,
+          easing: Easing.linear,
+        }).start(({ finished }) => {
+          if (finished) props.next();
+        });
+      case 0:
+        return scale.setValue(0);
+      default:
+        return scale.setValue(0);
+    }
+  });
 
   return (
     <View onLayout={evt => onLayoutAdded(evt.nativeEvent.layout)} style={styles.container}>
@@ -55,9 +50,6 @@ const ProgressBar = (props) => {
 ProgressBar.propTypes = ({
   index: PropTypes.number,
   currentIndex: PropTypes.number,
-  onCompleted: PropTypes.func,
-  isSeen: PropTypes.bool,
-  isPaused: PropTypes.bool,  
 });
 
 const styles = StyleSheet.create({
