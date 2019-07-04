@@ -4,17 +4,17 @@ import Proptypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 
 const ProgressArray = (props) => {
-  console.log('length', props);
   return (
     <View style={styles.progressBarArray}>
       {props.length.map((i, index) => (
         <ProgressBar
           index={index}
-          duration={props.currentStory.duration || 4}
+          duration={props.duration || 3}
           currentIndex={props.currentIndex}
           next={props.next}
           length={props.stories.length}
           active={i === props.currentIndex ? 1 : (i < props.currentIndex ? 2 : 0)}
+          isLoaded={props.isLoaded}
           pause={props.pause}
         />
       ))

@@ -39,9 +39,14 @@ const StoryContainer = (props) => {
     </TouchableOpacity>
   );
 
+  const onVideoLoaded = (length) => {
+    console.log('f',length);
+    props.onVideoLoaded(length.duration);
+  };
+
   return (
     <View style={styles.container}>
-      <Story story={story} />
+      <Story onImageLoaded={props.onImageLoaded} pause={props.pause} onVideoLoaded={onVideoLoaded} story={story} />
       {userView()}
       {isReadMore && readMore()}
     </View>

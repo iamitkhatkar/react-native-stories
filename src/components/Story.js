@@ -13,12 +13,15 @@ const Story = (props) => {
       {type === 'image' ? (
         <Image
           source={{ uri: url }}
+          onLoadEnd={props.onImageLoaded}
           style={styles.content}
         />
       )
         : (
           <Video
             source={{ uri: url }}
+            paused={props.pause}
+            onLoad={item => props.onVideoLoaded(item)}
             style={styles.content}
           />
         )}

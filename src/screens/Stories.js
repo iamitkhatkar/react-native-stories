@@ -12,8 +12,10 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const Stories = (props) => {
   const [stories, setStories] = useState(AllStories);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPause, setIsPause] = useState(true);
-  const pauseID = null;
+  const [isPause, setIsPause] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
+  const [duration, setDuration] = useState(3);
+  const pauseId = null;
 
   const changeStory = (evt) => {
     if (evt.locationX > SCREEN_WIDTH / 2) {
@@ -26,12 +28,13 @@ const Stories = (props) => {
   const nextStory = () => {
     if (stories.length - 1 > currentIndex) {
       setCurrentIndex(currentIndex + 1);
+      setLoaded(false);
+      setDuration(3);
     }
   };
 
   const prevStory = () => {
     if (currentIndex > 0 && stories.length) {
-    //   setStortPause(currentIndex);
       setCurrentIndex(currentIndex - 1);
     }
   };
@@ -48,15 +51,49 @@ const Stories = (props) => {
     setStorySeen(currentIndex);
   };
 
+  const imageLoaded = () => {
+    try {
+      if (pauseId) clearTimeout(pauseId);
+      setLoaded(true);
+    } catch (e) {
+      // console.log(e)
+    }
+  };
+
+  const onVideoLoaded = (length) => {
+    try {
+      if (pauseId) clearTimeout(pauseId);
+      setLoaded(true);
+      setDuration(length);
+    } catch (e) {
+      // console.log(e)
+    }
+  };
+
+  const onPause = () => {
+    setIsPause(!isPause);
+  };
+
 
   return (
-    <View
-      onTouchStart={e => changeStory(e.nativeEvent)}
+    <TouchableOpacity
+      activeOpacity={1}
+      delayLongPress={1000}
+      onPress={e => changeStory(e.nativeEvent)}
+      onLongPress={() => onPause()}
+      onPressOut={() => onPause()}
       style={styles.container}
     >
-      <StoryContainer story={stories[currentIndex]} />
+      <StoryContainer
+        pause={isPause}
+        story={stories[currentIndex]}
+        onVideoLoaded={onVideoLoaded}
+        onImageLoaded={() => imageLoaded()}
+      />
       <ProgressArray
         next={isEnd}
+        isLoaded={isLoaded}
+        duration={duration}
         pause={isPause}
         stories={stories}
         currentIndex={currentIndex}
@@ -64,7 +101,7 @@ const Stories = (props) => {
         length={stories.map((_, i) => i)}
         progress={{ id: currentIndex }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 

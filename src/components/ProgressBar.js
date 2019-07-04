@@ -19,13 +19,14 @@ const ProgressBar = (props) => {
       case 2:
         return scale.setValue(width);
       case 1:
-        return Animated.timing(scale, {
+        return props.isLoaded && !props.pause ? Animated.timing(scale, {
           toValue: width,
           duration: duration * 1000,
           easing: Easing.linear,
         }).start(({ finished }) => {
           if (finished) props.next();
-        });
+        })
+          : props.pause ? scale.setValue(0) : scale.setValue(0);
       case 0:
         return scale.setValue(0);
       default:
