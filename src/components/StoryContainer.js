@@ -1,55 +1,158 @@
-import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, Dimensions, WebView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import Modal from 'react-native-modalbox';
+import GestureRecognizer from 'react-native-swipe-gestures';
 import Story from './Story';
+import UserView from './UserView';
+import Readmore from './Readmore';
+import ProgressArray from './ProgressArray';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const StoryContainer = (props) => {
-  const { story } = props;
-  const { isReadMore } = story;
+  const { user } = props;
+  const { stories = [] } = user || {};
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModelOpen, setModel] = useState(false);
+  const [isPause, setIsPause] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
+  const [duration, setDuration] = useState(3);
+  const story = stories.length ? stories[currentIndex] : {};
+  const { isReadMore, url } = story || {};
 
-  const userView = () => (
-    <View style={styles.userView}>
-      <Image
-        source={{ uri: 'http://assets.amitshah.co.in/new/amit_shah/amit_shah.JPG' }}
-        style={{ width: 50, height: 50, borderRadius: 25, marginLeft: 8 }}
-      />
-      <View style={{ flex: 1 }}>
-        <Text style={styles.name}>Amit Shah</Text>
-        <Text style={styles.time}>Posted 2h ago</Text>
-      </View>
-      <Icon name="close" color="black" size={25} style={{ marginRight: 8 }} />
-    </View>
-  );
+  // const onVideoLoaded = (length) => {
+  //   props.onVideoLoaded(length.duration);
+  // };
 
-  const readMore = () => (
-    <TouchableOpacity style={styles.readMore}>
-      <View style={{
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: 'white',
-        borderWidth: 2,
-      }}
-      >
-        <Icon name="chevron-up" size={28} color="white" />
-      </View>
-      <Text style={styles.readText}>Read More</Text>
-    </TouchableOpacity>
-  );
+  const changeStory = (evt) => {
+    if (evt.locationX > SCREEN_WIDTH / 2) {
+      nextStory();
+    } else {
+      prevStory();
+    }
+  };
+
+  const nextStory = () => {
+    if (stories.length - 1 > currentIndex) {
+      setCurrentIndex(currentIndex + 1);
+      setLoaded(false);
+      setDuration(3);
+    } else {
+      setCurrentIndex(0);
+      props.onStoryNext();
+    }
+  };
+
+  const prevStory = () => {
+    if (currentIndex > 0 && stories.length) {
+      setCurrentIndex(currentIndex - 1);
+      setLoaded(false);
+      setDuration(3);
+    } else {
+      setCurrentIndex(0);
+      props.onStoryPrevious();
+    }
+  };
+
+  const onImageLoaded = () => {
+    setLoaded(true);
+  };
 
   const onVideoLoaded = (length) => {
-    console.log('f',length);
-    props.onVideoLoaded(length.duration);
+    setLoaded(true);
+    setDuration(length.duration);
+  };
+
+  const onPause = (result) => {
+    setIsPause(result);
+  };
+
+  const onReadMoreOpen = () => {
+    setIsPause(true);
+    setModel(true);
+  };
+  const onReadMoreClose = () => {
+    setIsPause(false);
+    setModel(false);
+  };
+
+  const loading = () => {
+    if (!isLoaded) {
+      return (
+        <View style={styles.loading}>
+          <View style={{ width: 1, height: 1 }}>
+            <Story onImageLoaded={onImageLoaded} pause onVideoLoaded={onVideoLoaded} story={story} />
+          </View>
+          <ActivityIndicator color="white" />
+        </View>
+      );
+    }
+  };
+
+  const config = {
+    velocityThreshold: 0.3,
+    directionalOffsetThreshold: 80,
+  };
+
+  const onSwipeDown = () => {
+    if (!isModelOpen) {
+      props.onClose();
+    } else {
+      setModel(false);
+    }
+  };
+
+  const onSwipeUp = () => {
+    if (!isModelOpen && isReadMore) {
+      setModel(true);
+    }
   };
 
   return (
-    <View style={styles.container}>
-      <Story onImageLoaded={props.onImageLoaded} pause={props.pause} onVideoLoaded={onVideoLoaded} story={story} />
-      {userView()}
-      {isReadMore && readMore()}
-    </View>
+    <GestureRecognizer
+      onSwipeDown={onSwipeDown}
+      onSwipeUp={onSwipeUp}
+      config={config}
+      style={styles.container}
+    >
+      <TouchableOpacity
+        activeOpacity={1}
+        delayLongPress={500}
+        onPress={e => changeStory(e.nativeEvent)}
+        onLongPress={() => onPause(true)}
+        onPressOut={() => onPause(false)}
+        style={styles.container}
+      >
+        <View style={styles.container}>
+          <Story onImageLoaded={onImageLoaded} pause={isPause} onVideoLoaded={onVideoLoaded} story={story} />
+
+          {loading()}
+
+          <UserView name={user.username} profile={user.profile} onClosePress={props.onClose} />
+
+          {isReadMore && <Readmore onReadMore={onReadMoreOpen} />}
+
+          <ProgressArray
+            next={nextStory}
+            isLoaded={isLoaded}
+            duration={duration}
+            pause={isPause}
+            stories={stories}
+            currentIndex={currentIndex}
+            currentStory={stories[currentIndex]}
+            length={stories.map((_, i) => i)}
+            progress={{ id: currentIndex }}
+          />
+
+        </View>
+
+        <Modal style={styles.modal} position="bottom" isOpen={isModelOpen} onClosed={onReadMoreClose}>
+          <View style={styles.bar} />
+          <WebView source={{ uri: 'https://www.google.com' }} />
+        </Modal>
+
+      </TouchableOpacity>
+    </GestureRecognizer>
   );
 };
 
@@ -82,28 +185,38 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     marginLeft: 12,
+    color: 'white',
   },
   time: {
     fontSize: 12,
     fontWeight: '400',
     marginTop: 3,
     marginLeft: 12,
+    color: 'white',
   },
   content: { width: '100%',
     height: '100%',
   },
-  readMore: {
-    position: 'absolute',
-    bottom: 45,
-    width: '98%',
-    justifyContent: 'space-between',
+  loading: {
+    backgroundColor: 'black',
+    height: '100%',
+    width: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  readText: {
-    fontSize: 18,
-    fontWeight: '500',
-    marginLeft: 12,
-    color: 'white',
+  modal: {
+    width: '100%',
+    height: '90%',
+    backgroundColor: 'white',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  bar: {
+    width: 50,
+    height: 8,
+    backgroundColor: 'gray',
+    alignSelf: 'center',
+    borderRadius: 4,
     marginTop: 8,
   },
 });

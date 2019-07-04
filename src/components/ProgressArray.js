@@ -1,11 +1,27 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { View, StyleSheet, Animated } from 'react-native';
 import Proptypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 
 const ProgressArray = (props) => {
+  const opacity = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (props.pause) {
+      Animated.timing(opacity, {
+        toValue: 0,
+        timing: 300,
+      }).start();
+    } else {
+      Animated.timing(opacity, {
+        toValue: 1,
+        timing: 300,
+      }).start();
+    }
+  }, [props.pause]);
+
   return (
-    <View style={styles.progressBarArray}>
+    <Animated.View style={[styles.progressBarArray, { opacity }]}>
       {props.length.map((i, index) => (
         <ProgressBar
           index={index}
@@ -19,7 +35,7 @@ const ProgressArray = (props) => {
         />
       ))
   }
-    </View>
+    </Animated.View>
   );
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
