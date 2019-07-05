@@ -124,7 +124,7 @@ const StoryContainer = (props) => {
         style={styles.container}
       >
         <View style={styles.container}>
-          <Story onImageLoaded={onImageLoaded} pause={isPause} onVideoLoaded={onVideoLoaded} story={story} />
+          <Story onImageLoaded={onImageLoaded} pause={isPause} isNewStory={props.isNewStory} onVideoLoaded={onVideoLoaded} story={story} />
 
           {loading()}
 
@@ -137,6 +137,7 @@ const StoryContainer = (props) => {
             isLoaded={isLoaded}
             duration={duration}
             pause={isPause}
+            isNewStory={props.isNewStory}
             stories={stories}
             currentIndex={currentIndex}
             currentStory={stories[currentIndex]}

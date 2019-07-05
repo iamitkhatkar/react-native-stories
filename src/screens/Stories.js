@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
-import Modal from 'react-native-modalbox';
+import { View, StyleSheet, FlatList, Image, TouchableOpacity, Modal } from 'react-native';
+// import Modal from 'react-native-modalbox';
+import { CubeNavigationHorizontal } from 'react-native-3dcube-navigation';
 import AllStories from '../constants/AllStories';
 import StoryContainer from '../components/StoryContainer';
 
@@ -8,6 +9,8 @@ import StoryContainer from '../components/StoryContainer';
 const Stories = (props) => {
   const [isModelOpen, setModel] = useState(false);
   const [currentUserIndex, setCurrentUserIndex] = useState(0);
+  const [currentScrollValue, setCurrentScrollValue] = useState(0);
+  let modalScroll = useRef(null);
 
   const onStorySelect = (index) => {
     setCurrentUserIndex(index);
@@ -18,9 +21,13 @@ const Stories = (props) => {
     setModel(false);
   };
 
-  const onStoryNext = () => {
+  const onStoryNext = (isScroll) => {
+    const newIndex = currentUserIndex + 1;
     if (AllStories.length - 1 > currentUserIndex) {
-      setCurrentUserIndex(currentUserIndex + 1);
+      setCurrentUserIndex(newIndex);
+      if (!isScroll) {
+        modalScroll.current.scrollTo(newIndex, true);
+      }
     } else {
       setModel(false);
     }
@@ -28,6 +35,19 @@ const Stories = (props) => {
 
   const onStoryPrevious = () => {
     if (currentUserIndex > 0) { setCurrentUserIndex(currentUserIndex - 1); }
+  };
+
+  const onScrollChange = (scrollValue) => {
+    if (currentScrollValue > scrollValue) {
+      onStoryNext(true);
+      console.log('next');
+      setCurrentScrollValue(scrollValue);
+    }
+    if (currentScrollValue < scrollValue) {
+      onStoryPrevious();
+      console.log('previous');
+      setCurrentScrollValue(scrollValue);
+    }
   };
 
 
@@ -46,13 +66,29 @@ const Stories = (props) => {
         )}
       />
 
-      <Modal style={styles.modal} position="center" isOpen={isModelOpen} useNativeDriver onClosed={onStoryClose}>
-        <StoryContainer
-          onClose={onStoryClose}
-          onStoryNext={onStoryNext}
-          onStoryPrevious={onStoryPrevious}
-          user={AllStories[currentUserIndex]}
-        />
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={isModelOpen}
+        style={styles.modal}
+        onShow={() => {
+          if (currentUserIndex > 0) {
+            modalScroll.current.scrollTo(currentUserIndex, false);
+          }
+        }}
+        onRequestClose={onStoryClose}
+      >
+        <CubeNavigationHorizontal callBackAfterSwipe={g => onScrollChange(g)} ref={modalScroll} style={styles.container}>
+          {AllStories.map((item, index) => (
+            <StoryContainer
+              onClose={onStoryClose}
+              onStoryNext={onStoryNext}
+              onStoryPrevious={onStoryPrevious}
+              user={item}
+              isNewStory={index !== currentUserIndex}
+            />
+          ))}
+        </CubeNavigationHorizontal>
       </Modal>
     </View>
   );

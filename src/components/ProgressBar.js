@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated, Easing } from 'react-native';
@@ -5,8 +6,10 @@ import PropTypes from 'prop-types';
 
 const ProgressBar = (props) => {
   const { index, currentIndex, duration, length, active } = props;
-  const scale = useRef(new Animated.Value(1)).current;
+  // const [pauseWidth, setPauseWidth] = useState(0);
+  const scale = useRef(new Animated.Value(0)).current;
   const [width, setWidth] = useState(0);
+  // console.log(pauseWidth);
 
   const onLayoutAdded = (evt) => {
     setWidth(evt.width);
@@ -20,7 +23,7 @@ const ProgressBar = (props) => {
       case 2:
         return scale.setValue(width);
       case 1:
-        return props.isLoaded && !props.pause ? Animated.timing(scale, {
+        return props.isLoaded && !props.isNewStory && !props.pause ? Animated.timing(scale, {
           toValue: width,
           duration: duration * 1000,
           easing: Easing.linear,

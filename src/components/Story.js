@@ -30,7 +30,7 @@ const Story = (props) => {
         : (
           <Video
             source={{ uri: url }}
-            paused={props.pause}
+            paused={props.pause || props.isNewStory}
             onLoad={item => props.onVideoLoaded(item)}
             style={styles.content}
           />
