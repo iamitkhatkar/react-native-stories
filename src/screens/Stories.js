@@ -10,7 +10,7 @@ const Stories = (props) => {
   const [isModelOpen, setModel] = useState(false);
   const [currentUserIndex, setCurrentUserIndex] = useState(0);
   const [currentScrollValue, setCurrentScrollValue] = useState(0);
-  let modalScroll = useRef(null);
+  const modalScroll = useRef(null);
 
   const onStorySelect = (index) => {
     setCurrentUserIndex(index);
