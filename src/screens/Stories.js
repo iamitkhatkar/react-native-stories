@@ -35,12 +35,8 @@ const Stories = (props) => {
 
   const onStoryPrevious = (isScroll) => {
     const newIndex = currentUserIndex - 1;
-<<<<<<< HEAD
     if (currentUserIndex > 0) { 
       setCurrentUserIndex(newIndex); 
-=======
-    if (currentUserIndex > 0) { setCurrentUserIndex(newIndex); 
->>>>>>> b5ad27d59e4cfe7958d9e7f086eb0432c87fddbc
       if (!isScroll) {
         modalScroll.current.scrollTo(newIndex, true);
       }
