@@ -33,8 +33,13 @@ const Stories = (props) => {
     }
   };
 
-  const onStoryPrevious = () => {
-    if (currentUserIndex > 0) { setCurrentUserIndex(currentUserIndex - 1); }
+  const onStoryPrevious = (isScroll) => {
+    const newIndex = currentUserIndex - 1;
+    if (currentUserIndex > 0) { setCurrentUserIndex(newIndex); 
+      if (!isScroll) {
+        modalScroll.current.scrollTo(newIndex, true);
+      }
+    }
   };
 
   const onScrollChange = (scrollValue) => {
