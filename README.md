@@ -16,6 +16,7 @@ So far we didnt create any library to ship it via package.json. But you can chec
 ## Screenshots ✨
 
 
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -25,8 +26,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
  
   <tr>
-    <td align="center"><a href="https://github.com/Amit-khatkar"><img src="https://avatars0.githubusercontent.com/u/16208872?s=460&v=4" width="100px;" alt="Amit Khatkar"/><br /><sub><b>Amit Khatkar</b></sub></a><br /><a href="#translation-robertlluberes" title="Translation">🌍</a></td>
-    <td align="center"><a href="https://github.com/trinadhkoya"><img src="https://avatars1.githubusercontent.com/u/9527766?s=460&v=4" width="100px;" alt="Trinadh Koya"/><br /><sub><b>Trinadh Koya</b></sub></a><br /><a href="https://github.com/all-contributors/all-contributors/commits?author=Jameskmonger" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/Amit-khatkar"><img src="https://avatars0.githubusercontent.com/u/16208872?s=460&v=4" width="100px;" alt="Amit Khatkar"/><br /><sub><b>Amit Khatkar</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/trinadhkoya"><img src="https://avatars1.githubusercontent.com/u/9527766?s=460&v=4" width="100px;" alt="Trinadh Koya"/><br /><sub><b>Trinadh Koya</b></sub></a><br /></td>
   </tr>
  
   
