@@ -12,10 +12,11 @@ So far we didnt create any library to ship it via package.json. But you can chec
 3.`react-native run-ios` or `react-native run-android`
 
 ##Screenshots
-![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.07.08.png?raw=true)
-![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.49.png?raw=true)
-![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.41.png?raw=true)
-![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.28.png?raw=true)
+<img src="https://github.com/Amit-khatkar/react-native-insta-stories/raw/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.41.png?raw=true" alt="ScreenShot" style="width: 300px;height: 480px;">
+<img src="https://github.com/Amit-khatkar/react-native-insta-stories/raw/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.47.png?raw=true" alt="ScreenShot" style="width: 300px;height: 480px;">
+<img src="https://github.com/Amit-khatkar/react-native-insta-stories/raw/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.49.png?raw=true" alt="ScreenShot" style="width: 300px;height: 480px;">
+<img src="https://github.com/Amit-khatkar/react-native-insta-stories/raw/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.58.png?raw=true" alt="ScreenShot" style="width: 300px;height: 480px;">
+<img src="https://github.com/Amit-khatkar/react-native-insta-stories/raw/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.07.08.png?raw=true" alt="ScreenShot" style="width: 300px;height: 480px;">
 
 ## Contributors ✨
 
