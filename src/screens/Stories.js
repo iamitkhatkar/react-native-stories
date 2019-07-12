@@ -103,18 +103,17 @@ const Stories = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#07ADA9',
     justifyContent: 'flex-start',
-    // alignItems: 'center',
-    paddingTop: 50,
+    paddingVertical: 50,
+    backgroundColor: 'rgba(255,255,255,255)',
   },
   circle: {
-    width: 80,
+    width: 66,
     margin: 4,
-    height: 80,
-    borderRadius: 40,
+    height: 66,
+    borderRadius: 33,
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: '#ffd835',
   },
   modal: {
     flex: 1,
