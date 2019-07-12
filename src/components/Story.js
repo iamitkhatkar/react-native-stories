@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
-import React, { useState, useEffect } from 'react';
-import { Text, View, Image, StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
+import { Dimensions, Image, StyleSheet, View } from 'react-native';
 import Video from 'react-native-video';
 // import Image from 'react-native-scalable-image';
 import PropTypes from 'prop-types';

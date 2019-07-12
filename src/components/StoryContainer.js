@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Dimensions, WebView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  WebView
+} from 'react-native';
 import Modal from 'react-native-modalbox';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Story from './Story';

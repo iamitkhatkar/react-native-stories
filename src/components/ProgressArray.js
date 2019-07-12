@@ -1,6 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
-import Proptypes from 'prop-types';
+import React, { useEffect, useRef } from 'react';
+import { Animated, StyleSheet } from 'react-native';
 import ProgressBar from './ProgressBar';
 
 const ProgressArray = (props) => {

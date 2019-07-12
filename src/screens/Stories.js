@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, FlatList, Image, TouchableOpacity, Modal } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { FlatList, Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
 // import Modal from 'react-native-modalbox';
 import { CubeNavigationHorizontal } from 'react-native-3dcube-navigation';
 import AllStories from '../constants/AllStories';
@@ -35,8 +35,8 @@ const Stories = (props) => {
 
   const onStoryPrevious = (isScroll) => {
     const newIndex = currentUserIndex - 1;
-    if (currentUserIndex > 0) { 
-      setCurrentUserIndex(newIndex); 
+    if (currentUserIndex > 0) {
+      setCurrentUserIndex(newIndex);
       if (!isScroll) {
         modalScroll.current.scrollTo(newIndex, true);
       }
