@@ -3,7 +3,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-class UserView extends React.Component {
+class UserView extends React.PureComponent {
   constructor(props) {
     super(props);
   }
