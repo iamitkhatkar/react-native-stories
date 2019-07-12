@@ -1,3 +1,21 @@
+## react-native-instagram-stories
+ A React Native component to create Instagram/Snapchat like stories on the mobile. It supports both Android and iOS.
+ It provides control over the story duration and loading indicator with cubic transition similar to Instagram.
+ 
+##Installation
+So far we didnt create any library to ship it via package.json. But you can checkout the below output via these simple steps 
+
+1.`yarn` or `npm install`  
+
+2.`react-native-link` to link Native Libraries
+
+3.`react-native run-ios` or `react-native run-android`
+
+##Screenshots
+![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.07.08.png?raw=true)
+![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.49.png?raw=true)
+![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.41.png?raw=true)
+![ScreenShot](https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%20-%202019-07-12%20at%2016.06.28.png?raw=true)
 
 ## Contributors ✨
 
