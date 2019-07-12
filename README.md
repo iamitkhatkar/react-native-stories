@@ -1,4 +1,4 @@
-## react-native-instagram-stories
+## react-native-instagram-stories 👈🏻
 
  A React Native component to create Instagram/Snapchat like stories on the mobile. It supports both Android and iOS.
  It provides control over the story duration and loading indicator with cubic transition similar to Instagram.
