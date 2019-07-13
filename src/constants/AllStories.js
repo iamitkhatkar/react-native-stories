@@ -1,6 +1,7 @@
 const stories = [
   {
     username: 'Amit',
+    title: 'Pune Dairies',
     profile: 'https://avatars0.githubusercontent.com/u/16208872?s=460&v=4',
     stories: [
       {
@@ -15,6 +16,7 @@ const stories = [
   {
     username: 'Trinadh',
     profile: 'https://avatars2.githubusercontent.com/u/45196619?s=460&v=4',
+    title: 'My Gallery',
     stories: [
       {
         id: 1,
@@ -46,6 +48,7 @@ const stories = [
   {
     username: 'Steve Jobs',
     profile: 'https://s3.amazonaws.com/media.eremedia.com/uploads/2012/05/15181015/stevejobs.jpg',
+    title: ' Beach Moves',
     stories: [
       {
         id: 1,
@@ -72,11 +75,13 @@ const stories = [
         isReadMore: true,
         isPaused: true,
       },
+
     ],
   },
   {
     username: 'Rahul',
     profile: 'https://images.unsplash.com/profile-1531581190171-0cf831d86212?dpr=2&auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff',
+    title: 'Beauties @Beach',
     stories: [
       {
         id: 4,

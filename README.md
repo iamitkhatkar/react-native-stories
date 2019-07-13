@@ -17,9 +17,13 @@ So far we didnt create any library to ship it via package.json. But you can chec
 
 <table>
  
-  <tr>
+ <tr>
+  <td align="center"><img src="https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/img.59.png" width="200px;height:300px"/></td>
+  <td align="center"><img src="https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/img.47.png" width="200px;height:300px"/></td>
+     
+ </tr>
+ <tr>
     <td align="center"><img src="https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/img.41.png" width="200px;height:300px"/></td>
- <td align="center"><img src="https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/img.47.png" width="200px;height:300px"/></td>
   <td align="center"><img src="https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/img.58.png" width="200px;height:300px"/></td>
  <td align="center"><img src="https://github.com/Amit-khatkar/react-native-insta-stories/blob/master/screenshots/img.49.png" width="200px;height:300px"/></td>
     

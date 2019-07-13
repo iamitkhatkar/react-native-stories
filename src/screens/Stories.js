@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { FlatList, Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Modal, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 // import Modal from 'react-native-modalbox';
 import { CubeNavigationHorizontal } from 'react-native-3dcube-navigation';
 import AllStories from '../constants/AllStories';
@@ -56,6 +56,9 @@ const Stories = (props) => {
     }
   };
 
+  const renderSeperator = () => (
+    <View style={{ height: 1, backgroundColor: '#ccc' }} />
+  );
 
   return (
     <View style={styles.container}>
@@ -67,10 +70,31 @@ const Stories = (props) => {
             <Image
               style={styles.circle}
               source={{ uri: item.profile }}
+              isHorizontal
             />
+            <Text style={styles.title}>{item.title}</Text>
+
           </TouchableOpacity>
         )}
       />
+
+
+      <FlatList
+        data={AllStories}
+        ItemSeparatorComponent={renderSeperator}
+        style={{ paddingHorizontal: 10 }}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity onPress={() => onStorySelect(index)} style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Image
+              style={styles.circle}
+              source={{ uri: item.profile }}
+            />
+            <Text style={styles.title}>{item.title}</Text>
+
+          </TouchableOpacity>
+        )}
+      />
+
 
       <Modal
         animationType="slide"
@@ -84,6 +108,7 @@ const Stories = (props) => {
         }}
         onRequestClose={onStoryClose}
       >
+        {/* eslint-disable-next-line max-len */}
         <CubeNavigationHorizontal callBackAfterSwipe={g => onScrollChange(g)} ref={modalScroll} style={styles.container}>
           {AllStories.map((item, index) => (
             <StoryContainer
@@ -113,10 +138,13 @@ const styles = StyleSheet.create({
     height: 66,
     borderRadius: 33,
     borderWidth: 2,
-    borderColor: '#ffd835',
+    borderColor: '#72bec5',
   },
   modal: {
     flex: 1,
+  },
+  title: {
+    fontSize: 9, textAlign: 'center',
   },
 });
 
