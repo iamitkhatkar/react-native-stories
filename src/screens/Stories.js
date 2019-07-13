@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { FlatList, Image, Modal, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // import Modal from 'react-native-modalbox';
 import { CubeNavigationHorizontal } from 'react-native-3dcube-navigation';
 import AllStories from '../constants/AllStories';
