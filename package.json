@@ -9,7 +9,7 @@
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "16.8.3",
-    "react-native": "0.59.10",
+    "react-native": "0.62.3",
     "react-native-3dcube-navigation": "^1.0.4",
     "react-native-modalbox": "^1.7.1",
     "react-native-scalable-image": "^0.5.1",
